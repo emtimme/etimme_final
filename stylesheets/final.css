@@ -1,0 +1,17 @@
+body {
+  background-color: #B2AC88;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif; 
+  color: #331800;
+}
+
+h1 {
+  background-image: url(../images/header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  color: #FFF;
+  font-size: 75px;
+  height: 300px;
+  margin-top: 0;
+  text-align: center;
+}
