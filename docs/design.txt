@@ -1,0 +1,274 @@
+Problem Statement
+
+A program is needed that will calculate the date a seed should be planted and the 
+harverst date if they were to plant on the recommended date based on user input. 
+The program will ask the user to input the seed name, days to maturity, last and 
+first frost dates for their growing zone, days to plant before first or last frost, 
+and the season they are planting in. The user will be able to enter as many seeds 
+as they need. The program will then display the indoor plant date and/or outdoor plant date, the 
+harvest date, as well as all of the information the user entered so it can be printed.
+
+Nouns: indoor plant date, outdoor plant date, seed name, days to maturity, last frost date, 
+first frost date, season, harvest date, days before frost
+
+Verbs: calculate, ask, display
+
+
+Defining Diagram
+
+INPUTS:
+seed name
+days to maturity
+last frost date
+first frost date
+season
+days before frost
+
+PROCESSING:
+prompt for seed name
+prompt for days to maturity
+prompt for last frost date
+prompt for first frost date
+prompt for season 
+prompt for days before frost
+calculate plant date
+calculate harvest date
+
+OUTPUTS:
+recommended plant date
+seed name
+days to maturity
+last frost date
+first frost date
+season
+harvest date
+days before frost
+
+
+Solution Algorithm 
+
+Date.prototype.addDays(days, theDate)
+  let date = new Date(theDay)
+  convert days to Numeric
+  set date to date + days
+  return date as Day, Month, Year
+END
+
+MAIN
+
+Initialize seedName
+Initialize daysToMaturity
+Initialize daysBeforeFrost
+Initialize lastFrostDate with "Enter the last frost date for your grow zone in MM/DD/YYY format
+Initialize firstFrostDate with "Enter the first frost date for your grow zone in MM/DD/YYY format
+Initialize season with "Enter the planting season"
+Initialize keepLooping to true
+Initialize index to 0
+Initialize plantIndoors
+Initialize plant
+Initialize date to new Date()
+Initialize havestDate
+
+convert lastFrostDate to date
+convert firstFrostDate to date
+
+WHILE keepLooping is true LOOP
+  seed = prompt("Enter the seed name. Type done to stop")
+  IF seed === "done" THEN
+    keepLooping = false
+    END LOOP
+  ELSE 
+    matureDays = prompt("Enter days to maturity")
+    daysBefore = prompt("Enter the number of days to plant before first or last frost. Enter 0 if none")
+    seedName.push(seed)
+    daysToMaturity.push(matureDays)
+    daysBeforeFrost.push(daysBefore)
+  LOOP
+ENDWHILE
+
+display "Planting season: " + season + "Last Frost Date: " + lastFrostDate.toDateString() + 
+"First Frost Date: " + firstFrostDate.toDateString()
+
+LOOP starting at 0 to index in increments of 1
+  IF (season === "spring" OR season === "summer") AND daysBeforeFrost[index] != 0 THEN
+    plantIndoors = (date.addDays(-daysBeforeFrost[index], lastFrostDate))
+    harvestDate = (date.addDays(daysToMaturity[index], plantIndoors))
+    display "Seed: " + seedName[index]
+    display "Days to maturity: " + daysToMaturity[index]
+    display "Days to plant before last frost: " + daysBeforeLastFrost[index]
+    display "Plant indoors on: " + plantIndoors
+    display "Sow outdoors on: " + lastFrostDate.toDateString + " for a harvest date of " + harvestDate
+    ELSE IF (season === "spring" OR season === "summer") AND daysBeforeFrost[index] == 0 THEN
+      harvestDate = (date.addDays(daysToMaturity[index], lastFrostDate))
+      display "Seed: " + seedName
+      display "Days to maturity: " + daysToMaturity
+      display "Sow outdoors on " + lastFrostDate.toDateSring " for a harvest date of " + harvestDate
+    ELSE IF (season === "fall" OR season === "winter") THEN
+      plant = (date.addDays(-daysToMaturity[index], firstFrostDate))
+      display "Seed : " + seedName
+      display "Days to maturity: " + daysToMaturity[index]
+      display "Plant on " + plant + " for a harvest date of " + firstFrostDate.toDateString
+    ELSE
+      alert "Invalid information entered. Please try again"
+  ENDIF
+END LOOP 
+
+END
+
+
+Checking Solution Algorithm
+
+VARIABLES: lastFrostDate, firstFrostDate, season, seedName, daysToMaturity, daysBeforeFrost, 
+
+TEST CASE 1:
+
+  INPUT VALUES: 05/31/2021, 09/01/2021, spring, Melon, 120, 36, 
+
+  EXPECTED RESULT: Planting season: spring
+
+		   Last Frost Date: Mon May 31 2021
+		   First Frost Date: Wed Sep 01 2021
+
+		   Seed: Melon
+		   Days to maturity: 120
+		   Days to plant before last frost: 36
+		   Plant indoors on Sun Apr 25 2021
+		   Sow outdoors on Mon May 31 2021 for a harvest date of Mon Aug 23 2021
+
+  ACTUAL RESULT: Planting season: spring
+
+   		Last Frost Date: Mon May 31 2021
+   		First Frost Date: Wed Sep 01 2021
+
+   		Seed: Melon
+   		Days to maturity: 120
+  		Days to plant before last frost: 36
+   		Plant indoors on Sun Apr 25 2021
+   		Sow outdoors on Mon May 31 2021 for a harvest date of Mon Aug 23 2021
+
+TEST CASE 2:
+
+  INPUT VALUES: 03/31/2021, 10/10/2021, winter, Garlic, 90, 0
+
+  EXPECTED RESULT: Planting season: winter
+
+		   Last Frost Date: Wed Mar 31 2021
+		   First Frost Date: Sun Oct 10 2021
+
+   		   Seed: Garlic
+   		   Days to maturity: 90
+		   Plant on Mon Jul 12 2021 for a harvest date of Sun Oct 10 2021
+
+  ACTUAL RESULT: Planting season: winter
+
+		 Last Frost Date: Wed Mar 31 2021
+		 First Frost Date: Sun Oct 10 2021
+
+		 Seed: Garlic
+	 	 Days to maturity: 90
+		 Plant on Mon Jul 12 2021 for a harvest date of Sun Oct 10 2021
+
+TEST CASE 3:
+
+  INPUT VALUES: 05/31/2020, 10/10/2020, fall, carrot, 80, 0, beet, 65, 0
+
+  EXPECTED RESULT: Planting season: fall
+
+                   Last Frost Date: Sun May 31 2020
+		   First Frost Date: Tue Sep 01 2020
+
+		   Seed: carrot
+		   Days to maturity: 80
+	           Plant on Sat Jun 13 2020 for a harvest date of Tue Sep 01 2020
+
+		   Seed: beet
+    		   Days to maturity: 65
+		   Plant on Sun Jun 28 2020 for a harvest date of Tue Sep 01 2020
+
+  ACTUAL RESULT: Planting season: fall
+
+		 Last Frost Date: Sun May 31 2020
+		 First Frost Date: Tue Sep 01 2020
+
+		 Seed: carrot
+		 Days to maturity: 80
+		 Plant on Sat Jun 13 2020 for a harvest date of Tue Sep 01 2020
+
+		 Seed: beet
+		 Days to maturity: 65
+		 Plant on Sun Jun 28 2020 for a harvest date of Tue Sep 01 2020
+
+TEST CASE 4:
+  
+  INPUT VALUES: 05/31/2022, 09/01/2022, summer, pumpkin, 120, 42, tomato, 80, 28, snap pea, 60, 0, watermelon, 120, 42, beet, 65, 0
+
+  EXPECTED RESULT: Planting season: summer
+
+Last Frost Date: Tue May 31 2022
+First Frost Date: Thu Sep 01 2022
+
+Seed: pumpkin
+Days to maturity: 120
+Days to plant before last frost: 42
+Plant indoors on Tue Apr 19 2022
+Sow outdoors on Tue May 31 2022 for a harvest date of Wed Aug 17 2022
+
+
+Seed: tomato
+Days to maturity: 80
+Days to plant before last frost: 28
+Plant indoors on Tue May 03 2022
+Sow outdoors on Tue May 31 2022 for a harvest date of Fri Jul 22 2022
+
+
+Seed: snap pea
+Days to maturity: 60
+Sow outdoors on Tue May 31 2022 for a harvest date of Sat Jul 30 2022
+
+
+Seed: watermelon
+Days to maturity: 120
+Days to plant before last frost: 42
+Plant indoors on Tue Apr 19 2022
+Sow outdoors on Tue May 31 2022 for a harvest date of Wed Aug 17 2022
+
+
+Seed: beet
+Days to maturity: 65
+Sow outdoors on Tue May 31 2022 for a harvest date of Thu Aug 04 2022
+
+  ACTUAL RESULT: Planting season: summer
+
+Last Frost Date: Tue May 31 2022
+First Frost Date: Thu Sep 01 2022
+
+Seed: pumpkin
+Days to maturity: 120
+Days to plant before last frost: 42
+Plant indoors on Tue Apr 19 2022
+Sow outdoors on Tue May 31 2022 for a harvest date of Wed Aug 17 2022
+
+
+Seed: tomato
+Days to maturity: 80
+Days to plant before last frost: 28
+Plant indoors on Tue May 03 2022
+Sow outdoors on Tue May 31 2022 for a harvest date of Fri Jul 22 2022
+
+
+Seed: snap pea
+Days to maturity: 60
+Sow outdoors on Tue May 31 2022 for a harvest date of Sat Jul 30 2022
+
+
+Seed: watermelon
+Days to maturity: 120
+Days to plant before last frost: 42
+Plant indoors on Tue Apr 19 2022
+Sow outdoors on Tue May 31 2022 for a harvest date of Wed Aug 17 2022
+
+
+Seed: beet
+Days to maturity: 65
+Sow outdoors on Tue May 31 2022 for a harvest date of Thu Aug 04 2022
+
